@@ -11,7 +11,7 @@ end
 
 def user_details
 
-  #Parameters: {"user_id"=>"3"}
+  #Parameters: {"user_name"=>"3"}
 
   the_username = params.fetch("user_name")
   matching_users = User.where({ :username => the_username})

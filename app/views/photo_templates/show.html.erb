@@ -12,22 +12,22 @@
 <dl>
   <dt>Image</dt>
   <dd>
-    <img src="https://robohash.org/dolorehicincidunt.png?size=300x300&amp;set=set1">
+    <img src="<%=@the_photo.image%>">
   </dd>
 
   <dt>Caption</dt>
   <dd>
-    <p>Once you’ve accepted your flaws, no one can use them against you.</p>
+    <p><%=@the_photo.caption%></p>
   </dd>
 
   <dt>Owner</dt>
   <dd>
-    catherina
+    <%=@the_photo.poster.username%>
   </dd>
 
   <dt>Posted</dt>
   <dd>
-    2019-04-27 11:56:39 UTC
+    <%=@the_photo.updated_at%>
   </dd>
 
   <dt>Edit photo</dt>
@@ -59,140 +59,29 @@
     <th>Comment</th>
     <th>Posted</th>
   </tr>
-
+<%@the_photo.comments.each do |comment|%>
   <tr>
     <td>
-      anisa
+    <%=comment.commenter.username%>
     </td>
 
     <td>
-      There was never a genius without a tincture of madness.
+      <%=comment.body%>
     </td>
 
     <td>
-      2019-04-29 03:52:01 UTC
+      <%=comment.created_at%>
     </td>
   </tr>
   
-  <tr>
-    <td>
-      roselee
-    </td>
-
-    <td>
-      Know how to listen, and you will profit even from those who talk badly.
-    </td>
-
-    <td>
-      2019-04-27 05:00:39 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      galen
-    </td>
-
-    <td>
-      Most people would rather give than get affection.
-    </td>
-
-    <td>
-      2019-04-29 02:11:53 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      galen
-    </td>
-
-    <td>
-      A few vices are sufficient to darken many virtues.
-    </td>
-
-    <td>
-      2019-04-29 19:00:58 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      robin
-    </td>
-
-    <td>
-      The mind is not a vessel to be filled but a fire to be kindled.
-    </td>
-
-    <td>
-      2019-04-29 22:16:30 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      jolie
-    </td>
-
-    <td>
-      Beware the barrenness of a busy life.
-    </td>
-
-    <td>
-      2019-04-29 16:24:49 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      trina
-    </td>
-
-    <td>
-      It is impossible to begin to learn that which one thinks one already knows.
-    </td>
-
-    <td>
-      2019-04-28 05:55:11 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      diego
-    </td>
-
-    <td>
-      The mind is not a vessel to be filled but a fire to be kindled.
-    </td>
-
-    <td>
-      2019-04-27 17:29:48 UTC
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-      augustine
-    </td>
-
-    <td>
-      Only the educated are free.
-    </td>
-
-    <td>
-      2019-04-28 15:58:31 UTC
-    </td>
-  </tr>
-  
+  <%end%>
 </table>
 
 <h3>Add a new comment</h3>
 
 <form action="/insert_comment_record">
   <label for="browser_photo_id">Photo ID</label>
-  <input id="browser_photo_id" type="text" value="777" name="input_photo_id">
+  <input id="browser_photo_id" type="text" value="<%=@the_photo.id%>" name="input_photo_id">
 
   <label for="browser_author_id">Author ID</label>
   <input id="browser_author_id" type="text" name="input_author_id">
