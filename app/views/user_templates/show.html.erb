@@ -7,25 +7,24 @@
         </li>
       </ul>
     </nav>
-    <h1>austin</h1>
+    <h1><%=@the_user.username%></h1>
 
 <dl>
   <dt>ID</dt>
-  <dd>102</dd>
+  <dd><%=@the_user.id%></dd>
 
   <dt>Edit user</dt>
   <dd>
-    <form action="/update_user/102" >
+    <form action="/update_user/<%=@the_user.id%>" >
       <label for="browser_username">Username</label>
-      <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="austin">
+      <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="<%=@the_user.username%>">
 
       <button>Update user</button>
     </form>
   </dd>
 </dl>
 
-<h2>Own photos (11)</h2>
-
+<h2>Own photos (<%=@the_user.own_photos.count %>)</h2>
 <table border="1">
   <tr>
     <th>
@@ -47,27 +46,29 @@
     <th></th>
   </tr>
 
+<%@the_user.own_photos.each do |photo| %>
   <tr>
     <td>
-      <img src="https://robohash.org/omnisrecusandaeimpedit.png?size=300x300&amp;set=set1">
+      <img src="<%=photo.image%>">
     </td>
 
     <td>
-      austin
+      <%=photo.poster.username%>
     </td>
 
     <td>
-      Once you’ve accepted your flaws, no one can use them against you.
+       <%=photo.caption%>
     </td>
 
     <td>
-      2018-01-26 09:32:19 UTC
+        <%=photo.created_at%>
     </td>
     
     <td>
-      <a href="/photos/805">
+      <a href="/photos/<%=photo.id%>">
         Show details
       </a>
     </td>
   </tr>
+  <%end%>
   </table>
