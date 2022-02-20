@@ -30,6 +30,21 @@ def delete_photo
   #render ({ :template => "photo_templates/photo_bye.html.erb"})
   redirect_to ("/photos")
 
+end
+
+def add_photo
+  #input_image=1&input_caption=2&input_owner_id=3
+new_image = params.fetch("input_image")
+new_caption = params.fetch("input_caption")
+new_owener_id = params.fetch("input_owner_id")
+
+a_new_photo = Photo.new
+a_new_photo.image = new_image
+a_new_photo.caption = new_caption
+a_new_photo.owner_id = new_owener_id
+a_new_photo.save
+
+redirect_to ("/photos/" + a_new_photo.id.to_s)
 
 end
 
