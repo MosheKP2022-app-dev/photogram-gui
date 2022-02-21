@@ -21,4 +21,38 @@ def user_details
 
 end
 
+def update
+#Parameters: {"input_username"=>"anisa1", "user_name"=>"117"}
+
+the_user_name = params.fetch("user_name")
+
+matching_user_name = User.where({ :username => the_user_name})
+
+the_user = matching_user_name.at(0)
+
+new_user_name = params.fetch("input_username")
+
+the_user.username = new_user_name
+
+the_user.save
+  
+  redirect_to ("/users/" + the_user.username)
+
+end
+
+def add_user
+#Parameters: {"input_username"=>"moshe"}
+
+new_user_name = params.fetch("input_username") 
+
+new_user = User.new
+
+new_user.username = new_user_name
+
+new_user.save
+
+redirect_to ("/users/" + new_user.username)
+
+end
+
 end
