@@ -53,12 +53,13 @@ def update_photo
   new_image = params.fetch("input_image")
   new_caption = params.fetch("input_caption")
   
-  updated_photo = Photo.where({ :id => the_id }).first
-  updated_photo.image = new_image
-  updated_photo.caption = new_caption
-  updated_photo.save
+  matching_photo = Photo.where({ :id => the_id })
+  @the_photo = matching_photo.at(0)
+  @the_photo.image = new_image
+  @the_photo.caption = new_caption
+  @the_photo.save
 
-redirect_to ("/photos/" + updated_photo.id.to_s)
+redirect_to ("/photos/" + @the_photo.id.to_s)
 
 end
 
