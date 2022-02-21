@@ -58,7 +58,26 @@ def update_photo
   updated_photo.caption = new_caption
   updated_photo.save
 
+redirect_to ("/photos/" + updated_photo.id.to_s)
+
+end
+
+def add_comment
+
+  #Parameters: {"input_photo_id"=>"952", "input_author_id"=>"117", "input_body"=>"bla\r\n", "photo_id"=>"952"}
+  the_id = params.fetch("photo_id")
+  comment_photo_id = params.fetch("input_photo_id")
+  comment_author = params.fetch("input_author_id")
+  comment_body = params.fetch("input_body")
+
+a_new_comment = Comment.new
+a_new_comment.author_id = comment_author
+a_new_comment.body = comment_body
+a_new_comment.photo_id = comment_photo_id
+a_new_comment.save
+
 redirect_to ("/photos/" + the_id)
 
 end
+
 end
